@@ -1,20 +1,22 @@
-num = input('Enter numbers: ')
-Quantity = len(num)
-print(Quantity)
+count = 0
 sum = 0
-a = 0
-b = 9
-for i in range(Quantity):
-    sum += int(num[i])
-    if int(num[i]) > a:
-        a = int(num[i])
-    elif int(num[i]) < b:
-        b = int(num[i])
-    else:
-        continue
+max = 0
+min = None
+while True:
+    user_input = input( 'Enter number: ' )
+    if user_input == '':
+        break
+    num = int(user_input)
+    sum += num
+    count += 1
+    if num > max:
+        max = num
+    if min == None or num < min:
+        min = num
 
-print(sum)
-print(a, b)
-print(sum / Quantity)
+print('Sum:', sum)
+print('Max:', max)
+print('Min:',min)
+print('Average:', sum / count)
 
 input()
