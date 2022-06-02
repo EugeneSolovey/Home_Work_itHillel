@@ -1,3 +1,8 @@
 string = input('Enter text: ')
 
-print('Number of sentences in the text:',string.count("."))
+count = string.count(".")
+
+if not string.endswith("."):
+    count += 1
+
+print('Number of sentences in the text:', count)
