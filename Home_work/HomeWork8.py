@@ -11,11 +11,19 @@ for i in range(len(string)):
 
 print("Symbols with even index: ", even)
 print("Symbols with odd index: ", odd)
-print("The fifth symbol: ", string[4])
+
+if len(string) > 4:
+    print("The fifth symbol: ", string[4])
+
 print("Up to the tenth symbols: ", string[:10])
 print("Last 5 symbols: ", string[-5:])
 print("String in reverse order: ", string[::-1])
 print("-II- through one symbols: ", string[::-2])
 print("String length: ", len(string))
+
+if string == string[::-1]:
+    print("The line entered is a palindrome")
+else:
+    print('The entered string is not a palindrome')
 
 input()
