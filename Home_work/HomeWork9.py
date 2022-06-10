@@ -2,6 +2,7 @@ import random
 
 num1 = int(input("Enter number: "))
 list1 = [random.randint(0, num1) for i in range(num1)]
+# print(list1)
 num2 = input("Enter number: ")
 if num1 > 1 and num2 != "":
     num2 = int(num2)
@@ -21,3 +22,5 @@ if num1 > 1 and num2 != "":
 
 else:
     print('You did not enter a number or the number you entered does not have adjacent numbers in the list')
+
+input()
