@@ -1,18 +1,15 @@
-user_names = input("Enter name: ")
-names = list(user_names)
-names2 = names.copy()
-count = 0
-print(names)
-print(names2)
-'''for i in names:
-    if i in names2:
-        count += 1
-        if count == 2:
-            names2.discard(i)
-'''
+names = input("Enter a name after \",\": ")
+names = names.replace(" ", "")
+
+names_list1 = names.split(',')
+names2 = set(names_list1)
+names1 = []
+
+for i, name in enumerate(names_list1):
+    while names_list1.count(name) > 1:
+        names1.append(names_list1.pop(i))
 
 
+print('Names that are not repeated: ',names2 - set(names1))
 
-
-print("Children's names without namesake", set(names) - set(names2))
-
+input()
