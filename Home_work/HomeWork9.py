@@ -16,7 +16,7 @@ if num1 > 1 and num2 != "":
                 print(list1[i-1])
             break
 
-        elif num2 not in list1:
+        else:
             print('The entered number is not in the list')
             break
 
