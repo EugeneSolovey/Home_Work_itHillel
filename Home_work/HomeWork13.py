@@ -4,14 +4,7 @@ translations = {
    'punishment': ['malum', 'multa']
 }
 
-for key, value in translations.items():
-    if type(value) == list:
-        translations[key] = ' '.join(value)
-
-some_dict = {y : x for x, y in translations.items()}
-
-
-
+some_dict = {' '.join(value): key for key, value in translations.items()}
 
 print(some_dict)
 
