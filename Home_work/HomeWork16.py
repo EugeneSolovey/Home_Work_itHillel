@@ -20,6 +20,7 @@ def degree(num):
     else:
         return 1
 
+
 value = degree(user_input)
 
 print('Result for ascension 2 in', str(user_input), 'degree, that', str(value), '- through recursion')
