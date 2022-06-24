@@ -17,7 +17,7 @@ def degree(num):
         return 2*degree(num-1)
     elif num < 0:
         return degree(num +1) / 2
-    if num == 0:
+    else:
         return 1
 
 value = degree(user_input)
