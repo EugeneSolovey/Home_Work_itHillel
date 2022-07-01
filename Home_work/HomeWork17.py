@@ -34,11 +34,15 @@ def main():
     global cities, all_res
 
     for comb in get_cities_seq(cities):
-        all_res.append(str(comb).capitalize())
+        all_res.append(comb)
     t = max(all_res, key=len)
     return t
 
 
 t = main()
-print(t)
+for _ in t:
+    _ = _.capitalize()
+    print(_, end=', ')
+
+
 
