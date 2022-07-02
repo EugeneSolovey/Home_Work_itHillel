@@ -1,29 +1,45 @@
 cities = input("Enter cities separated by a space: ").lower().split()
-all_res = []
+all_results = []  # Список всех комбинаций
 
 
-def get_cities_seq(cities):
-    c_copy = list(set(cities))
-    result = []
+def cities_combinations(cities):
+    '''
+    Функция получения всех комбинаций
+    :param cities: Список городов
+    :return: Комбинация городов
+    '''
+    cities_copy = list(set(cities))
+    combination = []
 
-    for c in c_copy:
-        for l in get_cities_rec([c], c_copy, [c]):
-            if l:
-                result.append(l)
+    for city in cities_copy:
+        for _ in cities_recursions([city], cities_copy, [city]):
+            if _:
+                combination.append(_)
 
-    result.sort(key=lambda l: len(l))
-    return result
+    combination.sort(key=lambda char: len(char))
+    return combination
 
 
-def get_cities_rec(current_list, copy, used):
-    c = current_list[-1]
+def cities_recursions(current_list, copy, used):
+    '''
+    Функция получения комбинаций для одного из городов
+    :param current_list: Список городов для комбинации
+    :param copy: Копия списка городов
+    :param used: Список использованных городов
+    :return: Список комбинаций
+    '''
+    last_city = current_list[-1]
     cur_len = len(used)
-    iter_next = (nc for nc in copy if nc not in used if nc[0] == c[-1])
+    iter_next = (next_city  # Города, которые начинаются на последнюю букву последнего города в списке current_list
+                 for next_city in copy
+                 if next_city not in used
+                 if next_city[0] == last_city[-1]
+                 )
     for item in iter_next:
-        to_yield = current_list + [item]
+        new_current_list = current_list + [item]
         used.append(item)
-        yield to_yield
-        yield from get_cities_rec(to_yield, copy, used)
+        yield new_current_list
+        yield from cities_recursions(new_current_list, copy, used)
 
     new_len = len(used)
     if new_len == cur_len:
@@ -31,18 +47,21 @@ def get_cities_rec(current_list, copy, used):
 
 
 def main():
-    global cities, all_res
+    '''
+    Функция получения всех комбинаций
+    :return: Максимально длинная комбинация городов
+    '''
+    global cities, all_results
 
-    for comb in get_cities_seq(cities):
-        all_res.append(comb)
-    t = max(all_res, key=len)
-    return t
+    for one_of_combination in cities_combinations(cities):
+        all_results.append(one_of_combination)
+    max_combination = max(all_results, key=len)
+    return max_combination
 
 
-t = main()
-for _ in t:
+result_game = main()
+for _ in result_game:
     _ = _.capitalize()
-    print(_, end=', ')
-
-
-
+    print(_, end=' ')
+print()
+print("Maximal combination is", len(result_game), "cities")
