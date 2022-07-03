@@ -1,4 +1,4 @@
-file = open('HomeWork.txt', mode='w+', encoding='utf-8')
+file = open('HomeWork.txt', mode='w')
 
 while True:
     line = input()
