@@ -1,18 +1,18 @@
 '''
 It is necessary to display some statistics on this file, namely:
 
-How many people take coffee and tea in: A - weekends, B - weekdays
-Top 15 popular products
 Distribution of sales by month (how many % for what month)
-Distribution of sales by bakery hours
 '''
 import csv
+import time
 
 Weekends_coffee_and_tea = 0
 Weekdays_coffee_and_tea = 0
 Most_popular_products = {}
 Most_popular_products_list = []
+Sales_by_date = {}
 Sales_by_month = {}
+Sales_by_bakery_hours = {}
 
 try:
     Bakery_file = open('Bakery.csv', 'r')
@@ -49,3 +49,39 @@ for key, value in Most_popular_products.items():
 
 for count, product in Most_popular_products_list[0:15]:
     print(product + ' - ' + str(count))
+print()
+
+for product in Bakery_data:
+
+    if int(product[2][8:10]) <= 12:
+        if product[2][8:10] in Sales_by_month:
+            Sales_by_month[product[2][8:10]] += 1
+        else:
+            Sales_by_month[product[2][8:10]] = 1
+    else:
+        if product[2][5:7] in Sales_by_month:
+            Sales_by_month[product[2][5:7]] += 1
+        else:
+            Sales_by_month[product[2][5:7]] = 1
+
+print('Distribution of sales by month:')
+for key, value in Sales_by_month.items():
+    print('Sales in', key, 'month is', str(value), 'items purchased -', str(round(value/len(Bakery_data)*100, 2)), '%')
+
+
+
+
+print()
+
+
+for product in Bakery_data:
+    if product[3] in Sales_by_bakery_hours:
+        Sales_by_bakery_hours[product[3]] += 1
+    else:
+        Sales_by_bakery_hours[product[3]] = 1
+
+print('Sales in morning:', Sales_by_bakery_hours['Morning'], ' %:', round((Sales_by_bakery_hours['Morning'] / len(Bakery_data) * 100), 2))
+print('Sales in afternoon:', Sales_by_bakery_hours['Afternoon'], ' %:', round((Sales_by_bakery_hours['Afternoon'] / len(Bakery_data) * 100), 2))
+print('Sales in evening:', Sales_by_bakery_hours['Evening'], ' %:', round((Sales_by_bakery_hours['Evening'] / len(Bakery_data) * 100), 2))
+print('Sales in night:', Sales_by_bakery_hours['Night'], ' %:', round((Sales_by_bakery_hours['Night'] / len(Bakery_data) * 100), 2))
+print()
