@@ -201,9 +201,9 @@ bmw_x5 = PetrolCar2(Color.GREEN, "X5", 2019, DriveType.FULL, 4.4)
 # print(f"{bmw_x5.color = }, {bmw_x5.model = }")
 
 # Method resolution order
-print(f"{PetrolCar2.mro() = }")
+#print(f"{PetrolCar2.mro() = }")
 
-exit()
+#exit()
 
 
 
